@@ -193,6 +193,32 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &= E[E[ E[Y | A_{1} = a_{1}, L_{1}, A_{0} = a_{0}, L_{0}] | A_{0} = a_{0}, L_{0}]]\\
 \end{align*}
 
+** IPTW
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=,t
+   :END:
+This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
+\begin{align*}
+  &~~~\text{By iterative expectation}\\
+  E[Y^{a_{0},a_{1}}]
+  &= E[E[Y^{a_{0},a_{1}} | L_{0}]]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{0} | L_{0}\\
+  &= E[E[Y^{a_{0},a_{1}} | A_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }E[Y^{a_{0},a_{1}} | A_{0}, L_{0}] = E[Y^{a_{0},a_{1}} | A_{0} = a_{0}, L_{0}]\\
+  &= E[E[Y^{a_{0},a_{1}} | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By iterative expectation}\\
+  &= E\left[E\left[ E\left[Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}\right] | A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Insert a carefully-crafted expression that is 1.}\\
+  &= E\left[E\left[ \frac{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} E\left[ Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}\right] \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Using probability = expectation of indicator}\\
+  &= E\left[E\left[ \frac{E[I(A_{1}=a_{1}) | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} E\left[ Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}\right] \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{1} | L_{1},A_{0} = a_{0},L_{0}\\
+  &= E\left[E\left[ \frac{E[I(A_{1}=a_{1}) Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  \\
+  &~~~\text{Insert a carefully-crafted expression that is 1.}\\
+  &= E\left[ \frac{f(A_{0}=a_{0} | L_{0})}{f(A_{0}=a_{0} | L_{0})}E\left[ \frac{E[I(A_{1}=a_{1}) Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+\end{align*}
+
 
 * Bibliography Part
 ** Bibliography
