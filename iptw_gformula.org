@@ -114,6 +114,22 @@ $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 #+END_CENTER
 
+** G-formula
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=,t
+   :END:
+\begin{align*}
+  &~~~\text{Iterative expectation}\\
+  E[Y^{a_{0}}]
+  &= E[E[Y^{a_{0}} | L_{0}]]\\
+  &~~~\text{Conditional exchangeability: } Y^{a_{0}} \ind A_{0} | L_{0}\\
+  &= E[E[Y^{a_{0}} | A_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }E[Y^{a_{0}} | A_{0}, L_{0}] = E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]\\
+  &= E[E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By consistency}\\
+  &= E[E[Y | A_{0} = a_{0}, L_{0}]]\\
+\end{align*}
+
 * Multiple time point strategy
 
 
