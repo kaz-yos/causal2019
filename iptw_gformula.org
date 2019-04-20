@@ -64,9 +64,55 @@
 * INTRODUCTION
 ** IPTW and G-formula
 - Here we will demonstrate the equivalence of the IPTW cite:robinsMarginalStructuralModels2000 and the /g/-formula cite:robinsNewApproachCausal1986 given saturated models.
+- Special thanks to [[https://twitter.com/edwardhkennedy/status/1119305663564472320][@edwardhkennedy]]!
+
+** Notations
+\begin{align*}
+  Y &: \text{Outcome measured at the end of the study}\\
+  Y^{a_{0}} &: \text{Counterfactual outcome with intervention at time 0 only}\\
+  Y^{a_{0},a_{1}} &: \text{Counterfactual outcome with intervention at time 0 and 1}\\
+  L_{0} &: \text{Baseline covariates}\\
+  A_{0} &: \text{Baseline treatment assignment}\\
+  L_{1} &: \text{Post-baseline covariates}\\
+  A_{1} &: \text{Post-baseline treatment assignment}\\
+\end{align*}
 
 * Single time point strategy
-** Title Fixed
+** Title Single time point strategy
+   :PROPERTIES:
+   :BEAMER_ENV: fullframe
+   :END:
+#+BEGIN_CENTER
+\resizebox{\linewidth}{!}{Single time point strategy}
+#+END_CENTER
+
+** Identifiability Conditions
+- We will follow the terminologies in cite:hernanCausalInference2019 (Chapter 3).
+1. *Consistency*: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+#+END_CENTER
+2. *Exchangeability*: the conditional probability of receiving every value of treatment, though not decided by the investigators, depends only on the measured covariates
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+#+END_CENTER
+3. *Positivity*: the conditional probability of receiving every value of treatment is greater than zero, i.e., positive
+
+Equivalence Technical Point 2.3
+
+** Identifiability Conditions (Math)
+1. *Consistency*:
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+#+END_CENTER
+2. *Exchangeability*:
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+#+END_CENTER
+3. *Positivity*:
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+#+END_CENTER
 
 * Multiple time point strategy
 
