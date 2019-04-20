@@ -130,6 +130,44 @@ $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
   &= E[E[Y | A_{0} = a_{0}, L_{0}]]\\
 \end{align*}
 
+** IPTW
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=,t
+   :END:
+This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
+\begin{align*}
+  &~~~\text{Iterative expectation}\\
+  E[Y^{a_{0}}]
+  &= E[E[Y^{a_{0}} | L_{0}]]\\
+  &~~~\text{Conditional exchangeability: } Y^{a_{0}} \ind A_{0} | L_{0}\\
+  &= E[E[Y^{a_{0}} | A_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }E[Y^{a_{0}} | A_{0}, L_{0}] = E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]\\
+  &= E \left[ E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}] \right]\\
+  &~~~\text{Insert an expression that is 1.}\\
+  &= E \left[ \frac{f(A_{0}=a_{0} | L_{0})}{f(A_{0}=a_{0} | L_{0})} E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}] \right]\\
+  &~~~\text{By stability, } g(L_{0}) = E[g(L_{0}) | L_{0}].\\
+  &= E \left[ \frac{E[f(A_{0}=a_{0} | L_{0}) | L_{0}]}{f(A_{0}=a_{0} | L_{0})} E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}] \right]\\
+  &~~~\text{Probability = Expectation of indicator}\\
+  &= E \left[ \frac{E[E[I(A_{0}=a_{0}) | L_{0}] | L_{0}]}{f(A_{0}=a_{0} | L_{0})} E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}] \right]\\
+  &~~~\text{By tower property}\\
+  &= E \left[ \frac{E[I(A_{0}=a_{0}) | L_{0}]}{f(A_{0}=a_{0} | L_{0})} E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}] \right]\\
+  &= E \left[ \frac{E[I(A_{0}=a_{0}) | L_{0}]}{f(A_{0}=a_{0} | L_{0})} E[Y^{a_{0}} | L_{0}] \right]\\
+  &~~~\text{Conditional exchangeability: } Y^{a_{0}} \ind A_{0} | L_{0}\\
+  &~~~\text{This allows merging the two inner expectations.}\\
+  &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} E[I(A_{0}=a_{0})Y^{a_{0}} | L_{0}] \right]\\
+  &~~~\text{By stability, } g(L_{0}) = E[g(L_{0}) | L_{0}].\\
+  &= E \left[ E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y^{a_{0}} \bigg| L_{0} \right] \right]\\
+  &~~~\text{Reversing iterative expectation}\\
+  &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y^{a_{0}} \right]\\
+  &~~~\text{By consistency, }I(A_{0}=a_{0})Y^{a_{0}} = Y \text{ for } A_{0} = a_{0}\\
+  &~~~\text{Also, }I(A_{0}=a_{0})Y^{a_{0}} = I(A_{0}=a_{0})Y = 0 \text{ for } A_{0} \ne a_{0}\\
+  &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y \right]\\
+  &= \text{IPTW estimand}\\
+\end{align*}
+
+- Law of Total Expectation (Iterative Expectation): https://en.wikipedia.org/wiki/Law_of_total_expectation
+- Stability and Tower Property: https://en.wikipedia.org/wiki/Conditional_expectation#Basic_properties
+
 * Multiple time point strategy
 
 
