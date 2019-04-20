@@ -213,7 +213,7 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &~~~\text{Using probability = expectation of indicator}\\
   &= E\left[E\left[ \frac{E[I(A_{1}=a_{1}) | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} E\left[ Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}\right] \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{1} | L_{1},A_{0} = a_{0},L_{0}\\
-  &~~~\text{Product of expectations = expectation of product}\\
+  &~~~\text{Thus, product of expectations = expectation of product}\\
   &= E\left[E\left[ \frac{E[I(A_{1}=a_{1}) Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &~~~\text{Insert a carefully-crafted expression that is 1.}\\
   &= E\left[ \frac{f(A_{0}=a_{0} | L_{0})}{f(A_{0}=a_{0} | L_{0})}E\left[ \frac{E[I(A_{1}=a_{1}) Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
@@ -222,6 +222,14 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &= E\left[ \frac{1}{f(A_{0}=a_{0} | L_{0})}E\left[ I(A_{0}=a_{0}) \frac{E[I(A_{1}=a_{1}) Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &= E\left[ \frac{1}{f(A_{0}=a_{0} | L_{0})}E\left[ \frac{E[I(A_{0}=a_{0})I(A_{1}=a_{1}) Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &= E\left[ \frac{1}{f(A_{0}=a_{0} | L_{0})}E\left[ \frac{E[I(A_{0}=a_{0})I(A_{1}=a_{1}) Y | L_{1}, A_{0} = a_{0}, L_{0}]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{The inner weight is a constant given $L_{1},A_{0},L_{0}$}\\
+  &= E\left[ \frac{1}{f(A_{0}=a_{0} | L_{0})}E\left[ E\left[\frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| L_{1}, A_{0} = a_{0}, L_{0}\right] \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Reversing iterative expectation}\\
+  &= E\left[ \frac{1}{f(A_{0}=a_{0} | L_{0})}E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~f(A_{0}=a_{0} | L_{0}) \text{ (function of $L_{0}$) is constant given } A_{0} = a_{0}, L_{0}\\
+  &= E\left[ E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0}) f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Reversing iterative expectation}\\
+  &= E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0}) f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \right]\\
 \end{align*}
 
 * Bibliography Part
