@@ -166,6 +166,32 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
 - Indicator function: https://www.statlect.com/fundamentals-of-probability/indicator-functions
 
 * Multiple time point strategy
+** Identifiability Conditions (Math)
+aa
+
+** G-formula
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=,t
+   :END:
+This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
+\begin{align*}
+  &~~~\text{By iterative expectation}\\
+  E[Y^{a_{0},a_{1}}]
+  &= E[E[Y^{a_{0},a_{1}} | L_{0}]]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{0} | L_{0}\\
+  &= E[E[Y^{a_{0},a_{1}} | A_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }E[Y^{a_{0},a_{1}} | A_{0}, L_{0}] = E[Y^{a_{0},a_{1}} | A_{0} = a_{0}, L_{0}]\\
+  &= E[E[Y^{a_{0},a_{1}} | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By iterative expectation}\\
+  &= E[E[ E[Y^{a_{0},a_{1}} | L_{1}, A_{0} = a_{0}, L_{0}] | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{1} | L_{1},A_{0},L_{0}\\
+  &= E[E[ E[Y^{a_{0},a_{1}} | A_{1}, L_{1}, A_{0} = a_{0}, L_{0}] | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }\\
+  &~~~E[Y^{a_{0},a_{1}} | A_{1}, L_{1}, A_{0} = a_{0}, L_{0}] = E[Y^{a_{0},a_{1}} | A_{1} = a_{1}, L_{1}, A_{0} = a_{0}, L_{0}]\\
+  &= E[E[ E[Y^{a_{0},a_{1}} | A_{1} = a_{1}, L_{1}, A_{0} = a_{0}, L_{0}] | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By consistency}\\
+  &= E[E[ E[Y | A_{1} = a_{1}, L_{1}, A_{0} = a_{0}, L_{0}] | A_{0} = a_{0}, L_{0}]]\\
+\end{align*}
 
 
 * Bibliography Part
