@@ -104,6 +104,7 @@
 Here we assume both $L_{t}$ and $A_{t}$ are discrete.
 
 ** Causal structure
+*** Original DAG
 \begin{center}
 \begin{tikzpicture}[%
   ->,
@@ -134,6 +135,71 @@ Here we assume both $L_{t}$ and $A_{t}$ are discrete.
   \draw[->] (A1) to (Y);
 \end{tikzpicture}
 \end{center}
+
+*** Single time point intervention SWIG
+\begin{center}
+\begin{tikzpicture}[%
+  ->,
+  shorten >=2pt,
+  >=stealth,
+  node distance=1cm,
+  pil/.style={
+    ->,
+    thick,
+    shorten =2pt,}
+  ]
+  %% Nodes
+  \node (L0) {$L_{0}$};
+  \node[right = 1cm of L0] (A0) {$A_{0}||a_{0}$};
+  \node[right = 1cm of A0] (L1) {$L_{1}^{a_{0}}$};
+  \node[right = 1cm of L1] (A1) {$A_{1}^{a_{0}}$};
+  \node[right = 1cm of A1] (Y) {$Y^{a_{0}}$};
+  %% Edges
+  \draw[->] (L0) to (A0);
+  \draw[->] (L0) to [out=25,in=155] (L1);
+  \draw[->] (L0) to [out=25,in=155] (A1);
+  \draw[->] (L0) to [out=25,in=155] (Y);
+  \draw[->] (A0) to (L1);
+  \draw[->] (A0) to [out=-25,in=-155] (A1);
+  \draw[->] (A0) to [out=-25,in=-155] (Y);
+  \draw[->] (L1) to (A1);
+  \draw[->] (L1) to [out=-25,in=-155] (Y);
+  \draw[->] (A1) to (Y);
+\end{tikzpicture}
+\end{center}
+
+*** Two time point intervention SWIG
+\begin{center}
+\begin{tikzpicture}[%
+  ->,
+  shorten >=2pt,
+  >=stealth,
+  node distance=1cm,
+  pil/.style={
+    ->,
+    thick,
+    shorten =2pt,}
+  ]
+  %% Nodes
+  \node (L0) {$L_{0}$};
+  \node[right = 1cm of L0] (A0) {$A_{0}||a_{0}$};
+  \node[right = 1cm of A0] (L1) {$L_{1}^{a_{0}}$};
+  \node[right = 1cm of L1] (A1) {$A_{1}^{a_{0}}||a_{1}$};
+  \node[right = 1cm of A1] (Y) {$Y^{a_{0},a_{1}}$};
+  %% Edges
+  \draw[->] (L0) to (A0);
+  \draw[->] (L0) to [out=25,in=155] (L1);
+  \draw[->] (L0) to [out=25,in=155] (A1);
+  \draw[->] (L0) to [out=25,in=155] (Y);
+  \draw[->] (A0) to (L1);
+  \draw[->] (A0) to [out=-25,in=-155] (A1);
+  \draw[->] (A0) to [out=-25,in=-155] (Y);
+  \draw[->] (L1) to (A1);
+  \draw[->] (L1) to [out=-25,in=-155] (Y);
+  \draw[->] (A1) to (Y);
+\end{tikzpicture}
+\end{center}
+
 
 * Single time point strategy
 ** Identifiability Conditions
