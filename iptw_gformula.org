@@ -103,39 +103,30 @@
 
 Here we assume both $L_{t}$ and $A_{t}$ are discrete.
 
-* Single time point strategy
-** Title Single time point strategy
-   :PROPERTIES:
-   :BEAMER_ENV: fullframe
-   :END:
-#+BEGIN_CENTER
-\resizebox{\linewidth}{!}{Single time point strategy}
-#+END_CENTER
 
+* Single time point strategy
 ** Identifiability Conditions
 - We will follow the terminologies in cite:hernanCausalInference2019 (Chapter 3).
-1. *Consistency*: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
+- 1. *Consistency*: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
 #+BEGIN_CENTER
 $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 #+END_CENTER
-2. *Exchangeability*: the conditional probability of receiving every value of treatment, though not decided by the investigators, depends only on the measured covariates
+- 2. *Exchangeability*: the conditional probability of receiving every value of treatment, though not decided by the investigators, depends only on the measured covariates
 #+BEGIN_CENTER
 $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 #+END_CENTER
-3. *Positivity*: the conditional probability of receiving every value of treatment is greater than zero, i.e., positive
-
-Equivalence Technical Point 2.3
+- 3. *Positivity*: the conditional probability of receiving every value of treatment is greater than zero, i.e., positive
 
 ** Identifiability Conditions (Math)
-1. *Consistency*:
+- 1. *Consistency*:
 #+BEGIN_CENTER
 $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 #+END_CENTER
-2. *Exchangeability*:
+- 2. *Exchangeability*:
 #+BEGIN_CENTER
 $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 #+END_CENTER
-3. *Positivity*:
+- 3. *Positivity*:
 #+BEGIN_CENTER
 $Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
 #+END_CENTER
@@ -225,7 +216,7 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
 #+LABEL: Two Time Point IPTW
 \begin{align*}
   &~~~\text{By iterative expectation}\\
-  &~~~~E[Y^{a_{0},a_{1}}]\\
+  E[Y^{a_{0},a_{1}}]
   &= E[E[Y^{a_{0},a_{1}} | L_{0}]]\\
   &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{0} | L_{0}\\
   &= E[E[Y^{a_{0},a_{1}} | A_{0}, L_{0}]]\\
