@@ -393,6 +393,8 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
     \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{0}=a_{0} | L_{0})f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
     \right]\\
   &~~~\text{By consistency and presence of indicators}\\
+  &~~~I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}} = I(A_{0}=a_{0})I(A_{1}=a_{1})Y \text{ for all }A_{0},A_{1}\\
+  &~~~\text{That is, consistency where $A_{0}=a_{0},A_{1}=a_{1}$, otherwise both sides are zeros.}\\
   &= E\left[
     \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0})f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
     \right]\\
