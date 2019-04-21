@@ -262,7 +262,7 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &~~~\text{Also, }I(A_{0}=a_{0})Y^{a_{0}} = 0 = I(A_{0}=a_{0})Y \text{ for } A_{0} \ne a_{0}.\\
   &~~~\text{Thus, }I(A_{0}=a_{0})Y^{a_{0}} = I(A_{0}=a_{0})Y \text{ regardless of } A_{0}.\\
   &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y \right]\\
-  &= \text{IPTW mean for group $A_{0} = a_{0}$}\\
+  &= \text{IPTW mean of $Y$ for group $A_{0} = a_{0}$}\\
 \end{align*}
 
 - Law of Total Expectation (Iterative Expectation): https://en.wikipedia.org/wiki/Law_of_total_expectation
@@ -380,6 +380,25 @@ new
   &~~~~~~~\left. +\frac{1}{f(A_{0}=a_{0} | L_{0})}
   E\left[\frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} \ne a_{0}, L_{0}\right]
 \right]\\
+  &~~~\text{Thus, we can drop conditioning on $A_{0}$.}\\
+  &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}
+    E\left[
+    \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
+    \bigg| L_{0}\right]\right]\\
+  &~~~\text{IPTW at time 0 is a constant given }L_{0}\\
+  &= E\left[
+    E\left[
+    \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{0}=a_{0} | L_{0})f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
+    \bigg| L_{0}\right]\right]\\
+  &~~~\text{Reverse iterative expectation (tower property)}\\
+  &= E\left[
+    \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{0}=a_{0} | L_{0})f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
+    \right]\\
+  &~~~\text{By consistency and presence of indicators}\\
+  &= E\left[
+    \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0})f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
+    \right]\\
+  &= \text{IPTW mean of $Y$ for group $A_{0} = a_{0}, A_{1} = a_{1}$}\\
 \end{align*}
 
 old
