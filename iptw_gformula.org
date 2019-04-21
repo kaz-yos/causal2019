@@ -11,21 +11,13 @@
   #+OPTIONS: toc:nil
   #+OPTIONS: H:2
   #+OPTIONS: ^:{}
-  #+STARTUP: beamer
-  #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
-  #+LATEX_CLASS: beamer
-  #+LATEX_CLASS_OPTIONS: [dvipdfmx,bigger,aspectratio=169]
-  #+LATEX_HEADER: %% No navigation bar
-  #+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
-  #+LATEX_HEADER: %% Page number with current/total format
-  #+LATEX_HEADER: \setbeamerfont{page number in head/foot}{size=\scriptsize}
-  #+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
-  #+LATEX_HEADER: \setbeamertemplate{frametitle}[default][center]
-  #+LATEX_HEADER: %% With item labels
-  #+LATEX_HEADER: \setbeamertemplate{bibliography item}{\insertbiblabel}
-  #+LATEX_HEADER: %% Without item labels
-  #+LATEX_HEADER: %% \setbeamertemplate{bibliography item}{}
-  #+LATEX_HEADER:
+  # LATEX configurations
+  #+LATEX_CLASS_OPTIONS: [dvipdfmx,10pt]
+  #+LATEX_HEADER: %% Margin
+  #+LATEX_HEADER: %% \usepackage[margin=1.5cm]{geometry}
+  #+LATEX_HEADER: \usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm, headsep=4pt]{geometry}
+  #+LATEX_HEADER: %% \addtolength{\topmargin}{0.3cm}
+  #+LATEX_HEADER: %% \addtolength{\textheight}{1.75in}
   #+LATEX_HEADER: %% Math
   #+LATEX_HEADER: \usepackage{amsmath}
   #+LATEX_HEADER: \usepackage{amssymb}
@@ -33,7 +25,7 @@
   #+LATEX_HEADER: %% Allow new page within align
   #+LATEX_HEADER: \allowdisplaybreaks
   #+LATEX_HEADER: \usepackage{cancel}
-  #+LATEX_HEADER: %% Code
+  #+LATEX_HEADER: % % Code
   #+LATEX_HEADER: \usepackage{listings}
   #+LATEX_HEADER: \usepackage{courier}
   #+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
@@ -45,21 +37,53 @@
   #+LATEX_HEADER: %% DAG
   #+LATEX_HEADER: \usepackage{tikz}
   #+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
+  #+LATEX_HEADER: %% Date
+  #+LATEX_HEADER: \usepackage[yyyymmdd]{datetime}
+  #+LATEX_HEADER: \renewcommand{\dateseparator}{--}
+  #+LATEX_HEADER: %% Header
+  #+LATEX_HEADER: \usepackage{fancyhdr}
+  #+LATEX_HEADER: \pagestyle{fancy}
+  #+LATEX_HEADER: \fancyhf{} % Erase first to supress section names
+  #+LATEX_HEADER: \fancyhead[L]{Kazuki Yoshida} % LEFT
+  #+LATEX_HEADER: \fancyhead[C]{} % CENTER
+  #+LATEX_HEADER: \fancyhead[R]{\today} % RIGHT
+  #+LATEX_HEADER: \fancyfoot[C]{\thepage}
+  #+LATEX_HEADER: %% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+  #+LATEX_HEADER: %% Section font size
+  #+LATEX_HEADER: \usepackage{sectsty}
+  #+LATEX_HEADER: \sectionfont{\small}
+  #+LATEX_HEADER: \subsectionfont{\small}
+  #+LATEX_HEADER: \subsubsectionfont{\small}
+  #+LATEX_HEADER: %% Section numbering
+  #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
+  #+LATEX_HEADER: %% \renewcommand\thesection{\alph{section}}
+  #+LATEX_HEADER: %% \renewcommand\thesubsection{\thesection.\arabic{subsection}}
+  #+LATEX_HEADER: %% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+  #+LATEX_HEADER: %%
+  #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/40067/numbering-sections-with-sequential-integers
+  #+LATEX_HEADER: %% \usepackage{chngcntr}
+  #+LATEX_HEADER: %% \counterwithout{subsection}{section}
+  #+LATEX_HEADER: %% enumerate
+  #+LATEX_HEADER: \usepackage{enumerate}
+  #+LATEX_HEADER: %% double space
+  #+LATEX_HEADER: %% \usepackage{setspace}
+  #+LATEX_HEADER: %% \linespread{2}
+  #+LATEX_HEADER: %% Paragraph Indentation
+  #+LATEX_HEADER: \usepackage{indentfirst}
+  #+LATEX_HEADER: \setlength{\parindent}{0em}
+  #+LATEX_HEADER: %% Spacing after headings
+  #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+  #+LATEX_HEADER: \usepackage{titlesec}
+  #+LATEX_HEADER: \titlespacing      \section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  #+LATEX_HEADER: \titlespacing   \subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  #+LATEX_HEADER: \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  #+LATEX_HEADER: %% Fix figures and tables by [H]
+  #+LATEX_HEADER: \usepackage{float}
   #+LATEX_HEADER: %% Allow URL embedding
   #+LATEX_HEADER: \usepackage{url}
-  #+LATEX_HEADER: %% Do not count backup slides.
-  #+LATEX_HEADER: %% https://tex.stackexchange.com/questions/70448/dont-count-backup-slides
-  #+LATEX_HEADER: \usepackage{appendixnumberbeamer}
-  #+LATEX_HEADER: %% https://www.sharelatex.com/learn/Hyperlinks
-  #+LATEX_HEADER: \usepackage{hyperref}
-  #+LATEX_HEADER: \hypersetup{
-  #+LATEX_HEADER:     colorlinks = true,
-  #+LATEX_HEADER:     linkcolor= blue
-  #+LATEX_HEADER: }
   #+LATEX_HEADER: \usepackage{fontawesome}
-  #+LATEX_HEADER: %% Include convenient commands.
   #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
-# ############################################################################ #
+  # ############################################################################ #
 
 * INTRODUCTION
 ** IPTW and G-formula
@@ -198,6 +222,7 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
    :BEAMER_opt: allowframebreaks,label=,t
    :END:
 This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
+#+LABEL: Two Time Point IPTW
 \begin{align*}
   &~~~\text{By iterative expectation}\\
   &~~~~E[Y^{a_{0},a_{1}}]\\
@@ -228,16 +253,15 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &= E\left[ \frac{1}{f(A_{0}=a_{0} | L_{0})}E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &~~~f(A_{0}=a_{0} | L_{0}) \text{ (function of $L_{0}$) is constant given } A_{0} = a_{0}, L_{0}\\
   &= E\left[ E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0}) f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Indicator allows dropping conditioning on }A_{0} = a_{0}\\
+  &= E\left[ E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0}) f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| L_{0}\right]\right]\\
   &~~~\text{Reversing iterative expectation}\\
   &= E\left[ \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y}{f(A_{0}=a_{0} | L_{0}) f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \right]\\
+  &= \text{IPTW estimand}\\
 \end{align*}
 
 * Bibliography Part
 ** Bibliography
-   :PROPERTIES:
-   :BEAMER_opt: allowframebreaks,label=,t
-   :END:
-\tiny
 # To remove "References" section header
 \renewcommand{\section}[2]{}
 # Following lines must be left-aligned without preceding spaces.
