@@ -350,18 +350,18 @@ new
   &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}\times\right.\\
   &~~~~~~~\left.
     E\left[ \frac{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
-    E\left[I(A_{0}=a_{0})Y^{a_{0},a_{1}} |L_{1}, A_{0} = a_{0}, L_{0}\right] | A_{0} = a_{0}, L_{0}\right]\right]\\
+    E\left[I(A_{0}=a_{0})Y^{a_{0},a_{1}} |L_{1}, A_{0} = a_{0}, L_{0}\right] \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &~~~\text{Using probability = expectation of indicator}\\
   &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}\times\right.\\
   &~~~~~~~\left.
     E\left[ \frac{E \left[ I(A_{1}=a_{1}) | L_{1}, A_{0} = a_{0}, L_{0} \right]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
-    E\left[I(A_{0}=a_{0})Y^{a_{0},a_{1}} |L_{1}, A_{0} = a_{0}, L_{0}\right] | A_{0} = a_{0}, L_{0}\right]\right]\\
+    E\left[I(A_{0}=a_{0})Y^{a_{0},a_{1}} |L_{1}, A_{0} = a_{0}, L_{0}\right] \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
   &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{1} | L_{1},A_{0} = a_{0},L_{0}\\
   &~~~\text{Thus, product of expectation = expectation of product}\\
   &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}\times\right.\\
   &~~~~~~~\left.
     E\left[ \frac{E\left[I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}} |L_{1}, A_{0} = a_{0}, L_{0}\right]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
-     | A_{0} = a_{0}, L_{0}\right]\right]\\
+     \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
 \end{align*}
 
 old
