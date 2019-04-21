@@ -362,6 +362,24 @@ new
   &~~~~~~~\left.
     E\left[ \frac{E\left[I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}} |L_{1}, A_{0} = a_{0}, L_{0}\right]}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
      \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{IPTW at time 1 is a constant given }L_{1}, A_{0} = a_{0}, L_{0}\\
+  &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}\times\right.\\
+  &~~~~~~~\left.
+    E\left[
+    E\left[\frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg|L_{1}, A_{0} = a_{0}, L_{0}\right]
+     \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Reverse iterative expectation (tower property)}\\
+  &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}
+    E\left[
+    \frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})}
+    \bigg| A_{0} = a_{0}, L_{0}\right]\right]\\
+  &~~~\text{Add a second term that is zero by indicator }I(A_{0}=a_{0})\\
+  &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})}
+    E\left[\frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} = a_{0}, L_{0}\right]
+    \right.\\
+  &~~~~~~~\left. +\frac{1}{f(A_{0}=a_{0} | L_{0})}
+  E\left[\frac{I(A_{0}=a_{0})I(A_{1}=a_{1})Y^{a_{0},a_{1}}}{f(A_{1}=a_{1} | L_{1}, A_{0} = a_{0}, L_{0})} \bigg| A_{0} \ne a_{0}, L_{0}\right]
+\right]\\
 \end{align*}
 
 old
