@@ -1,10 +1,10 @@
 \sloppy
 * Meta-data :noexport:
   # http://orgmode.org/worg/exporters/beamer/tutorial.html
-  #+TITLE: Equivalence of IPTW and G-formula @@latex:\\@@
+  #+TITLE: Equivalence of G-formula and IPTW
   #+AUTHOR: Kazuki Yoshida @@latex:\\@@
   #+AUTHOR: @@latex:\\@@
-  #+AUTHOR: \faTwitter @kaz_yos \faGithub kaz-yos
+  #+AUTHOR: \faTwitter [[https://twitter.com/kaz_yos][@kaz_yos]] \faGithub [[https://github.com/kaz-yos/][kaz-yos]]
   #+DATE: \today@@latex:\\@@
   #+DESCRIPTION:
   #+KEYWORDS:
