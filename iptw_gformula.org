@@ -321,7 +321,7 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
    :PROPERTIES:
    :BEAMER_opt: allowframebreaks,label=,t
    :END:
-This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
+This follows the Technical Point 2.3 in cite:hernanCausalInference2019 and an input from [[https://twitter.com/edwardhkennedy/status/1119305663564472320][@edwardhkennedy]].
 \begin{align*}
   &~~~\text{By iterative expectation}\\
   E\left[Y^{a_{0},a_{1}}\right]
