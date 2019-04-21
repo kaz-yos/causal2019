@@ -270,8 +270,24 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
 - Indicator function: https://www.statlect.com/fundamentals-of-probability/indicator-functions
 
 * Multiple time point strategy
-** Identifiability Conditions (Math)
-aa
+** Identifiability Conditions
+- We will follow the terminologies in cite:hernanCausalInference2019 (Chapter 19, Technical Point 19.2).
+- 1. *Consistency*: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0},a_{1}}$ if $A_{0i} = a_{0}, A_{1i} = a_{1}$ for all $a_{0},a_{1}$
+#+END_CENTER
+- 2. *Exchangeability*: the conditional probability of receiving every value of treatment, though not decided by the investigators, depends only on the measured covariates
+#+BEGIN_CENTER
+$A_{0} \ind Y^{a_{0},a_{1}} | L_{0}$ for all $a_{0},a_{1}$
+
+$A_{1} \ind Y^{a_{0},a_{1}} | L_{1},A_{0}=a_{0},L_{0}$ for all $a_{0},a_{1}$
+#+END_CENTER
+- 3. *Positivity*: the conditional probability of receiving every value of treatment is greater than zero, i.e., positive
+#+BEGIN_CENTER
+$f(A_{0} = a_{0} | L_{0} = l_{0}) > 0$ for all $a_{0},l_{0}$ where $f(L_{0} = l_{0}) > 0$
+
+$f(A_{1} = a_{1} | L_{1} = l_{1}, A_{0} = a_{0}, L_{0} = l_{0}) > 0$ for all $a_{1},l_{1},a_{0},l_{0}$ where $f(L_{1} = l_{1}, A_{0} = a_{0}, L_{0} = l_{0}) > 0$
+#+END_CENTER
 
 ** G-formula
    :PROPERTIES:
