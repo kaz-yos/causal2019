@@ -322,7 +322,22 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
    :BEAMER_opt: allowframebreaks,label=,t
    :END:
 This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
-#+LABEL: Two Time Point IPTW
+
+new
+\begin{align*}
+  &~~~\text{By iterative expectation}\\
+  E\left[Y^{a_{0},a_{1}}\right]
+  &= E\left[E\left[Y^{a_{0},a_{1}} | L_{0}\right]\right]\\
+  &~~~\text{Insert a carefully-crafted expression that is 1.}\\
+  &= E\left[\frac{f(A_{0}=a_{0} | L_{0})}{f(A_{0}=a_{0} | L_{0})} E\left[Y^{a_{0},a_{1}} | L_{0}\right]\right]\\
+  &~~~\text{Using probability = expectation of indicator}\\
+  &= E\left[\frac{E \left[ I(A_{0}=a_{0}) | L_{0} \right]}{f(A_{0}=a_{0} | L_{0})} E\left[Y^{a_{0},a_{1}} | L_{0}\right]\right]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0},a_{1}} \ind A_{0} | L_{0}\\
+  &~~~\text{Thus, product of expectation = expectation of product}\\
+  &= E\left[\frac{1}{f(A_{0}=a_{0} | L_{0})} E\left[I(A_{0}=a_{0})Y^{a_{0},a_{1}} | L_{0}\right]\right]\\
+\end{align*}
+
+old
 \begin{align*}
   &~~~\text{By iterative expectation}\\
   E[Y^{a_{0},a_{1}}]
