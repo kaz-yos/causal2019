@@ -206,26 +206,15 @@ Here we assume both $L_{t}$ and $A_{t}$ are discrete.
 - We will follow the terminologies in cite:hernanCausalInference2019 (Chapter 3).
 - 1. *Consistency*: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
 #+BEGIN_CENTER
-$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$ for all $a_{0}$
 #+END_CENTER
 - 2. *Exchangeability*: the conditional probability of receiving every value of treatment, though not decided by the investigators, depends only on the measured covariates
 #+BEGIN_CENTER
-$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+$A_{0} \ind Y^{a_{0}} | L_{0}$ for all $a_{0}$
 #+END_CENTER
 - 3. *Positivity*: the conditional probability of receiving every value of treatment is greater than zero, i.e., positive
-
-** Identifiability Conditions (Math)
-- 1. *Consistency*:
 #+BEGIN_CENTER
-$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
-#+END_CENTER
-- 2. *Exchangeability*:
-#+BEGIN_CENTER
-$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
-#+END_CENTER
-- 3. *Positivity*:
-#+BEGIN_CENTER
-$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$
+$f(A_{0} = a_{0} | L_{0} = l_{0}) > 0$ for all $a_{0},l_{0}$ where $f(L_{0} = l_{0}) > 0$
 #+END_CENTER
 
 ** G-formula
@@ -243,6 +232,9 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &= E[E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]]\\
   &~~~\text{By consistency}\\
   &= E[E[Y | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{Make outer expectation explicit sum}\\
+  &= \sum_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0})\\
+  &= \text{Conditional mean averaged over $L_{0}$}\\
 \end{align*}
 
 ** IPTW
@@ -262,15 +254,15 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
   &~~~\text{This allows merging the two inner expectations.}\\
   &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} E[I(A_{0}=a_{0})Y^{a_{0}} | L_{0}] \right]\\
   &~~~\text{By stability, } g(L_{0}) = E[g(L_{0}) | L_{0}].\\
-  &~~~\text{i.e., a function of $L_{0}$ can go into $E[\cdot | L_{0}]$}\\
+  &~~~\text{i.e., a function of $L_{0}$ only (IPTW expression) can go into $E[\cdot | L_{0}]$}\\
   &= E \left[ E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y^{a_{0}} \bigg| L_{0} \right] \right]\\
-  &~~~\text{Reversing iterative expectation}\\
+  &~~~\text{Reversing iterative expectation (tower property)}\\
   &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y^{a_{0}} \right]\\
   &~~~\text{By consistency, }I(A_{0}=a_{0})Y^{a_{0}} = I(A_{0}=a_{0})Y = Y \text{ for } A_{0} = a_{0}.\\
   &~~~\text{Also, }I(A_{0}=a_{0})Y^{a_{0}} = 0 = I(A_{0}=a_{0})Y \text{ for } A_{0} \ne a_{0}.\\
   &~~~\text{Thus, }I(A_{0}=a_{0})Y^{a_{0}} = I(A_{0}=a_{0})Y \text{ regardless of } A_{0}.\\
   &= E \left[ \frac{1}{f(A_{0}=a_{0} | L_{0})} I(A_{0}=a_{0})Y \right]\\
-  &= \text{IPTW estimand for group $A_{0} = a_{0}$}\\
+  &= \text{IPTW mean for group $A_{0} = a_{0}$}\\
 \end{align*}
 
 - Law of Total Expectation (Iterative Expectation): https://en.wikipedia.org/wiki/Law_of_total_expectation
