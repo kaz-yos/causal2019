@@ -291,6 +291,16 @@ For exposure values above 0.6, the above identification formula is not well defi
 \end{align*}
 For exposure values between 0.4 and 0.6, the above identification formula is well defined as the shaded positive area does span the entire width of $L_{0}$ distribution. All necessary conditional expectations are defined and observable. Therefore, the population counterfactual dose response in this restricted [0.4, 0.6] range is identifiable. Any causal contrast $E[Y^{a_{0}}] - E[Y^{a_{0}*}]$ for specific values $a_{0}$ and $a_{0}*$ both of which are within the [0.4, 0.6] range is identified.
 
+*** $E[Y^{a_{0}} | L_{0} \le 0.5]$
+\begin{align*}
+  E[Y^{a_{0}} | L_{0} \le 0.5]
+  &= \int_{0}^{0.5} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+\end{align*}
+
+If we limit the inference to a subset of the population where $L_{0} \le 0.5$, the range of values for $a_{0}$ where the mean counterfactual outcome is identified expands.
+
+For exposure values between 0.2 and 0.6, the above identification formula is well defined as the shaded positive area does span the left half of of $L_{0}$ distribution. All necessary conditional expectations are defined and observable. Therefore, the subpopulation counterfactual dose response in this restricted [0.2, 0.6] range is identifiable. Any causal contrast $E[Y^{a_{0}} | L_{0} \le 0.5] - E[Y^{a_{0}*} | L_{0} \le 0.5]$ for specific values $a_{0}$ and $a_{0}*$ both of which are within the [0.2, 0.6] range is identified.
+
 
 * Bibliography Part
 ** Bibliography
