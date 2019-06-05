@@ -1,4 +1,4 @@
-% Created 2019-06-05 Wed 06:07
+% Created 2019-06-05 Wed 06:15
 % Intended LaTeX compiler: pdflatex
 \documentclass[dvipdfmx,10pt]{article}
 \usepackage[utf8]{inputenc}
@@ -99,16 +99,16 @@
 \maketitle
 \sloppy
 \section{INTRODUCTION}
-\label{sec:org1bcd429}
+\label{sec:orgcdbb454}
 \subsection{Positivity and continuous exposure}
-\label{sec:orge8b1bb4}
+\label{sec:org19b1033}
 \begin{itemize}
 \item Here we will review meaning and implication of positivity violation when the exposure of interest is continuous.
 \item Special thanks to \href{https://twitter.com/EpiDancer/status/1135741241386328065}{@EpiDancer}, \href{https://twitter.com/ashley\_naimi/status/1136045624724529153}{@ashley\_naimi}, and \href{https://twitter.com/jfeldman\_epi/status/1136116613630103553}{@jfeldman\_epi}.
 \end{itemize}
 
 \subsection{Notations}
-\label{sec:orgc077cf2}
+\label{sec:org5c8b59d}
 \begin{align*}
   Y &: \text{Outcome measured at the end of the study}\\
   Y^{a_{0}} &: \text{Counterfactual outcome with intervention at time 0 only}\\
@@ -122,10 +122,10 @@
 Here we will only consider the causal effect of \(A_{0}\) and its associated counterfactual \(Y^{a_{0}}\).
 
 \subsection{Causal structure}
-\label{sec:orga7575f5}
+\label{sec:orgcb7d0b6}
 \begin{enumerate}
 \item Original DAG
-\label{sec:orgc9aa043}
+\label{sec:org9339ce2}
 \begin{center}
 \begin{tikzpicture}[%
   ->,
@@ -158,7 +158,7 @@ Here we will only consider the causal effect of \(A_{0}\) and its associated cou
 \end{center}
 
 \item Single time point intervention SWIG
-\label{sec:orgd062655}
+\label{sec:orga099423}
 \begin{center}
 \begin{tikzpicture}[%
   ->,
@@ -194,9 +194,9 @@ The backdoor to \(A_{0}\) is only through \(L_{0}\). Thus, conditioning on \(L_{
 \end{enumerate}
 
 \section{Single time point strategy}
-\label{sec:orgfbc046d}
+\label{sec:org3660bcc}
 \subsection{Identifiability Conditions}
-\label{sec:orgdd14444}
+\label{sec:orgb817369}
 We will follow the terminologies in \cite{hernanCausalInference2019} (Chapter 3).
 \begin{itemize}
 \item \textbf{Consistency}: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
@@ -218,7 +218,7 @@ We will follow the terminologies in \cite{hernanCausalInference2019} (Chapter 3)
 \end{center}
 
 \subsection{Identification with all conditions met}
-\label{sec:orgdc39369}
+\label{sec:org9a31f35}
 Here we will examine how the average causal effect is identified when all three conditions are met. Please note identification REF is under infinite amount of data. This derivation follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \begin{align*}
   &~~~\text{By iterative expectation}\\
@@ -237,7 +237,7 @@ Here we will examine how the average causal effect is identified when all three 
 The role of positivity is to ensure that the last integration is well defined at all \(l_{0}\) values with \(f(L_{0} = l_{0}) > 0\) for any given \(a_{0}\). As a result, we can identify the mean counterfactual outcome in the population at any given \(a_{0}\) with observable variables. Thus, any causal contrast of interest \(E[Y^{a_{0}}] - E[Y^{a_{0}*}]\) is also identifiable. This also implies the entire counterfactual dose response (functional form of \(E[Y^{a_{0}}]\) as a function of \(a_{0}\)) in the population is identified.
 
 \subsection{Non-identification with positivity violation}
-\label{sec:org2cd9c47}
+\label{sec:orgf7e27df}
 Here we will examine the implication of positivity violation, which is the complement of the positivity condition stated above.
 
 \begin{itemize}
@@ -266,7 +266,7 @@ The identification formula is still the same.
 The last integration is not always well defined. At some values of \(a_{0}\), \(E[Y | A_{0} = a_{0}, L_{0} = l_{0}]\) is undefined or unobservable at some \(l_{0}\) where \(f(L_{0} = l_{0}) > 0\) because \(f(A_{0} = a_{0} | L_{0} = l_{0}) = 0\). Therefore, the counterfactual dose response in the population is not identifiable. However, some specific causal contrasts may be identifiable. For two specific exposure values \(a_{0}\) and \(a_{0}*\) that both satisfy positivity at all \(l_{0}\) where \(f(L_{0} = l_{0}) > 0\), we can identify \(E[Y^{a_{0}}] - E[Y^{a_{0}*}]\).
 
 \subsection{Illustration with a toy example}
-\label{sec:org9493d5d}
+\label{sec:orgd3db077}
 
 Consider a continuous exposure \(A_{0}\) and a continuous \(L_{0}\) that both take on values between 0 and 1. We assume \(f(L_{0} = l_{0}) > 0\) for all values between 0 and 1. We further assume the exposure density is positive only in the shaded area in the figure.
 
@@ -275,12 +275,12 @@ Consider a continuous exposure \(A_{0}\) and a continuous \(L_{0}\) that both ta
 library(tidyverse)
 tibble(x = seq(from = 0, to = 1, by = 0.01),
        ymin = 0   + 0.4 * x,
-       ymax = 0.6 + 0.4 * x) %>% 
+       ymax = 0.6 + 0.4 * x) %>%
 ggplot(mapping = aes(x = x)) +
   geom_ribbon(mapping = aes(ymin = ymin, ymax = ymax),
               alpha = 0.5, fill = "gray") +
   labs(y = "A0", x = "L0") +
-  scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.1)) + 
+  scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.1)) +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 0, vjust = 0.5),
         legend.key = element_blank(),
@@ -297,7 +297,7 @@ At \(L_{0} = 0\), \(A_{0}\) can only take on values between 0 and 0.6. At \(L_{0
 
 \begin{enumerate}
 \item \(E[Y^{a_{0}}]\) for \(a_{0} < 0.4\)
-\label{sec:org5b49ac2}
+\label{sec:org2cbb7ae}
 \begin{align*}
   E[Y^{a_{0}}]
   &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
@@ -305,7 +305,7 @@ At \(L_{0} = 0\), \(A_{0}\) can only take on values between 0 and 0.6. At \(L_{0
 For exposure values below 0.4, the above identification formula is not well defined as the shaded positive area does not span the entire width of \(L_{0}\) distribution (lower triangular white area violates positivity) and some of the conditional expectations are undefined.
 
 \item \(E[Y^{a_{0}}]\) for \(a_{0} > 0.6\)
-\label{sec:orgae85ec4}
+\label{sec:org5ded2f8}
 \begin{align*}
   E[Y^{a_{0}}]
   &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
@@ -313,19 +313,30 @@ For exposure values below 0.4, the above identification formula is not well defi
 For exposure values above 0.6, the above identification formula is not well defined as the shaded positive area does not span the entire width of \(L_{0}\) distribution (upper triangular white area violates positivity) and some of the conditional expectations are undefined.
 
 \item \(E[Y^{a_{0}}]\) for \(0.4 \le a_{0} \le 0.6\)
-\label{sec:org7956896}
+\label{sec:org9326494}
 \begin{align*}
   E[Y^{a_{0}}]
   &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
 \end{align*}
-For exposure values between 0.4 and 0.6, the above identification formula is well defined as the shaded positive area does span the entire width of \(L_{0}\) distribution. All necessary conditional expectations are defined and observable. Therefore, the population counterfactual dose response in this restricted [0.4, 0.6] range is identifiable. Any causal contrast \(E[Y^{a_{0}}] - E[Y^{a_{0}*}]\) for specific values \(a_{0}\) and \(a_{0}*\) both of which are within the [0.4, 0.6] range,
+For exposure values between 0.4 and 0.6, the above identification formula is well defined as the shaded positive area does span the entire width of \(L_{0}\) distribution. All necessary conditional expectations are defined and observable. Therefore, the population counterfactual dose response in this restricted [0.4, 0.6] range is identifiable. Any causal contrast \(E[Y^{a_{0}}] - E[Y^{a_{0}*}]\) for specific values \(a_{0}\) and \(a_{0}*\) both of which are within the [0.4, 0.6] range is identified.
+
+\item \(E[Y^{a_{0}} | L_{0} \le 0.5]\)
+\label{sec:org0c596f7}
+\begin{align*}
+  E[Y^{a_{0}} | L_{0} \le 0.5]
+  &= \int_{0}^{0.5} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+\end{align*}
+
+If we limit the inference to a subset of the population where \(L_{0} \le 0.5\), the range of values for \(a_{0}\) where the mean counterfactual outcome is identified expands.
+
+For exposure values between 0.2 and 0.6, the above identification formula is well defined as the shaded positive area does span the left half of of \(L_{0}\) distribution. All necessary conditional expectations are defined and observable. Therefore, the subpopulation counterfactual dose response in this restricted [0.2, 0.6] range is identifiable. Any causal contrast \(E[Y^{a_{0}} | L_{0} \le 0.5] - E[Y^{a_{0}*} | L_{0} \le 0.5]\) for specific values \(a_{0}\) and \(a_{0}*\) both of which are within the [0.2, 0.6] range is identified.
 \end{enumerate}
 
 
 \section{Bibliography Part}
-\label{sec:org51bbf0a}
+\label{sec:orge3655d0}
 \subsection{Bibliography}
-\label{sec:org2efcddc}
+\label{sec:orgf998314}
 \renewcommand{\section}[2]{}
 
 \bibliographystyle{apalike}
