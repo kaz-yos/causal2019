@@ -1,0 +1,301 @@
+\sloppy
+* Meta-data :noexport:
+  # http://orgmode.org/worg/exporters/beamer/tutorial.html
+  #+TITLE: Review of Positivity with Continuous Exposure
+  #+AUTHOR: Kazuki Yoshida @@latex:\\@@
+  #+AUTHOR: @@latex:\\@@
+  #+AUTHOR: \faTwitter [[https://twitter.com/kaz_yos][@kaz_yos]] \faGithub [[https://github.com/kaz-yos/][kaz-yos]]
+  #+DATE: \today@@latex:\\@@
+  #+DESCRIPTION:
+  #+KEYWORDS:
+  #+OPTIONS: toc:nil
+  #+OPTIONS: H:2
+  #+OPTIONS: ^:{}
+  # LATEX configurations
+  #+LATEX_CLASS_OPTIONS: [dvipdfmx,10pt]
+  #+LATEX_HEADER: %% Margin
+  #+LATEX_HEADER: %% \usepackage[margin=1.5cm]{geometry}
+  #+LATEX_HEADER: \usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm, headsep=4pt]{geometry}
+  #+LATEX_HEADER: %% \addtolength{\topmargin}{0.3cm}
+  #+LATEX_HEADER: %% \addtolength{\textheight}{1.75in}
+  #+LATEX_HEADER: %% Math
+  #+LATEX_HEADER: \usepackage{amsmath}
+  #+LATEX_HEADER: \usepackage{amssymb}
+  #+LATEX_HEADER: \usepackage{wasysym}
+  #+LATEX_HEADER: %% Allow new page within align
+  #+LATEX_HEADER: \allowdisplaybreaks
+  #+LATEX_HEADER: \usepackage{cancel}
+  #+LATEX_HEADER: % % Code
+  #+LATEX_HEADER: \usepackage{listings}
+  #+LATEX_HEADER: \usepackage{courier}
+  #+LATEX_HEADER: \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
+  #+LATEX_HEADER: \usepackage[cache=false]{minted}
+  #+LATEX_HEADER: \usemintedstyle{vs}
+  #+LATEX_HEADER: %% Graphics
+  #+LATEX_HEADER: \usepackage{graphicx}
+  #+LATEX_HEADER: \usepackage{grffile}
+  #+LATEX_HEADER: %% DAG
+  #+LATEX_HEADER: \usepackage{tikz}
+  #+LATEX_HEADER: \usetikzlibrary{positioning,shapes.geometric}
+  #+LATEX_HEADER: %% Date
+  #+LATEX_HEADER: \usepackage[yyyymmdd]{datetime}
+  #+LATEX_HEADER: \renewcommand{\dateseparator}{--}
+  #+LATEX_HEADER: %% Header
+  #+LATEX_HEADER: \usepackage{fancyhdr}
+  #+LATEX_HEADER: \pagestyle{fancy}
+  #+LATEX_HEADER: \fancyhf{} % Erase first to supress section names
+  #+LATEX_HEADER: \fancyhead[L]{Kazuki Yoshida} % LEFT
+  #+LATEX_HEADER: \fancyhead[C]{} % CENTER
+  #+LATEX_HEADER: \fancyhead[R]{\today} % RIGHT
+  #+LATEX_HEADER: \fancyfoot[C]{\thepage}
+  #+LATEX_HEADER: %% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+  #+LATEX_HEADER: %% Section font size
+  #+LATEX_HEADER: \usepackage{sectsty}
+  #+LATEX_HEADER: \sectionfont{\small}
+  #+LATEX_HEADER: \subsectionfont{\small}
+  #+LATEX_HEADER: \subsubsectionfont{\small}
+  #+LATEX_HEADER: %% Section numbering
+  #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
+  #+LATEX_HEADER: %% \renewcommand\thesection{\alph{section}}
+  #+LATEX_HEADER: %% \renewcommand\thesubsection{\thesection.\arabic{subsection}}
+  #+LATEX_HEADER: %% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+  #+LATEX_HEADER: %%
+  #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/40067/numbering-sections-with-sequential-integers
+  #+LATEX_HEADER: %% \usepackage{chngcntr}
+  #+LATEX_HEADER: %% \counterwithout{subsection}{section}
+  #+LATEX_HEADER: %% enumerate
+  #+LATEX_HEADER: \usepackage{enumerate}
+  #+LATEX_HEADER: %% double space
+  #+LATEX_HEADER: %% \usepackage{setspace}
+  #+LATEX_HEADER: %% \linespread{2}
+  #+LATEX_HEADER: %% Paragraph Indentation
+  #+LATEX_HEADER: \usepackage{indentfirst}
+  #+LATEX_HEADER: \setlength{\parindent}{0em}
+  #+LATEX_HEADER: %% Spacing after headings
+  #+LATEX_HEADER: %% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+  #+LATEX_HEADER: \usepackage{titlesec}
+  #+LATEX_HEADER: \titlespacing      \section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  #+LATEX_HEADER: \titlespacing   \subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  #+LATEX_HEADER: \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  #+LATEX_HEADER: %% Fix figures and tables by [H]
+  #+LATEX_HEADER: \usepackage{float}
+  #+LATEX_HEADER: %% Allow URL embedding
+  #+LATEX_HEADER: \usepackage{url}
+  #+LATEX_HEADER: \usepackage{fontawesome}
+  #+LATEX_HEADER: \input{\string~/.emacs.d/misc/GrandMacros}
+  # ############################################################################ #
+
+* INTRODUCTION
+** Positivity and continuous exposure
+- Here we will review meaning and implication of positivity violation when the exposure of interest is continuous.
+- Special thanks to [[https://twitter.com/EpiDancer/status/1135741241386328065][@EpiDancer]], [[https://twitter.com/ashley_naimi/status/1136045624724529153][@ashley_naimi]], and [[https://twitter.com/jfeldman_epi/status/1136116613630103553][@jfeldman_epi]].
+
+** Notations
+\begin{align*}
+  Y &: \text{Outcome measured at the end of the study}\\
+  Y^{a_{0}} &: \text{Counterfactual outcome with intervention at time 0 only}\\
+  Y^{a_{0},a_{1}} &: \text{Counterfactual outcome with intervention at time 0 and 1}\\
+  L_{0} &: \text{Baseline covariates}\\
+  A_{0} &: \text{Baseline treatment assignment}\\
+  L_{1} &: \text{Post-baseline covariates}\\
+  A_{1} &: \text{Post-baseline treatment assignment}\\
+\end{align*}
+
+Here we will only consider the causal effect of $A_{0}$ and its associated counterfactual $Y^{a_{0}}$.
+
+** Causal structure
+*** Original DAG
+\begin{center}
+\begin{tikzpicture}[%
+  ->,
+  shorten >=2pt,
+  >=stealth,
+  node distance=1cm,
+  pil/.style={
+    ->,
+    thick,
+    shorten =2pt,}
+  ]
+  %% Nodes
+  \node (L0) {$L_{0}$};
+  \node[right = 1cm of L0] (A0) {$A_{0}$};
+  \node[right = 1cm of A0] (L1) {$L_{1}$};
+  \node[right = 1cm of L1] (A1) {$A_{1}$};
+  \node[right = 1cm of A1] (Y) {$Y$};
+  %% Edges
+  \draw[->] (L0) to (A0);
+  \draw[->] (L0) to [out=25,in=155] (L1);
+  \draw[->] (L0) to [out=25,in=155] (A1);
+  \draw[->] (L0) to [out=25,in=155] (Y);
+  \draw[->] (A0) to (L1);
+  \draw[->] (A0) to [out=-25,in=-155] (A1);
+  \draw[->] (A0) to [out=-25,in=-155] (Y);
+  \draw[->] (L1) to (A1);
+  \draw[->] (L1) to [out=-25,in=-155] (Y);
+  \draw[->] (A1) to (Y);
+\end{tikzpicture}
+\end{center}
+
+*** Single time point intervention SWIG
+\begin{center}
+\begin{tikzpicture}[%
+  ->,
+  shorten >=2pt,
+  >=stealth,
+  node distance=1cm,
+  pil/.style={
+    ->,
+    thick,
+    shorten =2pt,}
+  ]
+  %% Nodes
+  \node (L0) {$L_{0}$};
+  \node[right = 1cm of L0] (A0) {$A_{0}||a_{0}$};
+  \node[right = 1cm of A0] (L1) {$L_{1}^{a_{0}}$};
+  \node[right = 1cm of L1] (A1) {$A_{1}^{a_{0}}$};
+  \node[right = 1cm of A1] (Y) {$Y^{a_{0}}$};
+  %% Edges
+  \draw[->] (L0) to (A0);
+  \draw[->] (L0) to [out=25,in=155] (L1);
+  \draw[->] (L0) to [out=25,in=155] (A1);
+  \draw[->] (L0) to [out=25,in=155] (Y);
+  \draw[->] (A0) to (L1);
+  \draw[->] (A0) to [out=-25,in=-155] (A1);
+  \draw[->] (A0) to [out=-25,in=-155] (Y);
+  \draw[->] (L1) to (A1);
+  \draw[->] (L1) to [out=-25,in=-155] (Y);
+  \draw[->] (A1) to (Y);
+\end{tikzpicture}
+\end{center}
+
+The backdoor to $A_{0}$ is only through $L_{0}$. Thus, conditioning on $L_{0}$ is sufficient for exchangeability as explained below.
+
+* Single time point strategy
+** Identifiability Conditions
+We will follow the terminologies in cite:hernanCausalInference2019 (Chapter 3).
+- *Consistency*: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
+#+BEGIN_CENTER
+$Y_{i} = Y_{i}^{a_{0}}$ if $A_{0i} = a_{0}$ for all $a_{0}$
+#+END_CENTER
+- *Exchangeability*: the conditional density of receiving every value of treatment, though not decided by the investigators, depends only on the measured covariates
+#+BEGIN_CENTER
+$A_{0} \ind Y^{a_{0}} | L_{0}$ for all $a_{0}$
+#+END_CENTER
+- *Positivity*: the conditional density of receiving every value of treatment is greater than zero, i.e., positive
+#+BEGIN_CENTER
+$f(A_{0} = a_{0} | L_{0} = l_{0}) > 0$ for all $a_{0},l_{0}$ where $f(L_{0} = l_{0}) > 0$
+#+END_CENTER
+
+** Identification with all conditions met
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=,t
+   :END:
+
+Here we will examine how the average causal effect is identified when all three conditions are met. Please note identification REF is under infinite amount of data. This derivation follows the Technical Point 2.3 in cite:hernanCausalInference2019.
+\begin{align*}
+  &~~~\text{By iterative expectation}\\
+  E[Y^{a_{0}}]
+  &= E[E[Y^{a_{0}} | L_{0}]]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0}} \ind A_{0} | L_{0}\\
+  &= E[E[Y^{a_{0}} | A_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }E[Y^{a_{0}} | A_{0}, L_{0}] = E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]\\
+  &= E[E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By consistency}\\
+  &= E[E[Y | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{Make outer expectation explicit integration}\\
+  &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+  &= \text{Conditional mean averaged over $L_{0}$}\\
+\end{align*}
+The role of positivity is to ensure that the last integration is well defined at all $l_{0}$ values with $f(L_{0} = l_{0}) > 0$ for any given $a_{0}$. As a result, we can identify the mean counterfactual outcome in the population at any given $a_{0}$ with observable variables. Thus, any causal contrast of interest $E[Y^{a_{0}}] - E[Y^{a_{0}*}]$ is also identifiable. This also implies the entire counterfactual dose response (functional form of $E[Y^{a_{0}}]$ as a function of $a_{0}$) in the population is identified.
+
+** Non-identification with positivity violation
+   :PROPERTIES:
+   :BEAMER_opt: allowframebreaks,label=,t
+   :END:
+
+Here we will examine the implication of positivity violation, which is the complement of the positivity condition stated above.
+
+- *Positivity violation*: the conditional density of receiving some value of treatment is not greater than zero
+#+BEGIN_CENTER
+$f(A_{0} = a_{0} | L_{0} = l_{0}) = 0$ for some $a_{0},l_{0}$ where $f(L_{0} = l_{0}) > 0$
+#+END_CENTER
+
+The identification formula is still the same.
+\begin{align*}
+  &~~~\text{By iterative expectation}\\
+  E[Y^{a_{0}}]
+  &= E[E[Y^{a_{0}} | L_{0}]]\\
+  &~~~\text{By conditional exchangeability: } Y^{a_{0}} \ind A_{0} | L_{0}\\
+  &= E[E[Y^{a_{0}} | A_{0}, L_{0}]]\\
+  &~~~\text{By exchangeability, }E[Y^{a_{0}} | A_{0}, L_{0}] = E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]\\
+  &= E[E[Y^{a_{0}} | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{By consistency}\\
+  &= E[E[Y | A_{0} = a_{0}, L_{0}]]\\
+  &~~~\text{Make outer expectation explicit integration}\\
+  &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+  &= \text{Conditional mean averaged over $L_{0}$}\\
+\end{align*}
+
+The last integration is not always well defined. At some values of $a_{0}$, $E[Y | A_{0} = a_{0}, L_{0} = l_{0}]$ is undefined or unobservable at some $l_{0}$ where $f(L_{0} = l_{0}) > 0$ because $f(A_{0} = a_{0} | L_{0} = l_{0}) = 0$. Therefore, the counterfactual dose response in the population is not identifiable. However, some specific causal contrasts may be identifiable. For two specific exposure values $a_{0}$ and $a_{0}*$ that both satisfy positivity at all $l_{0}$ where $f(L_{0} = l_{0}) > 0$, we can identify $E[Y^{a_{0}}] - E[Y^{a_{0}*}]$.
+
+** Illustration with a toy example
+
+Consider a continuous exposure $A_{0}$ and a continuous $L_{0}$ that both take on values between 0 and 1. We assume $f(L_{0} = l_{0}) > 0$ for all values between 0 and 1. We further assume the exposure density is positive only in the shaded area in the figure.
+
+# https://orgmode.org/manual/results.html
+# https://orgmode.org/manual/Exporting-code-blocks.html
+\scriptsize
+#+HEADER: :width 3.5 :height 3
+#+BEGIN_SRC R :session *R-org* :results output graphics :file ./source/positivity_figure1.pdf :exports both
+library(tidyverse)
+tibble(x = seq(from = 0, to = 1, by = 0.01),
+       ymin = 0   + 0.4 * x,
+       ymax = 0.6 + 0.4 * x) %>%
+ggplot(mapping = aes(x = x)) +
+  geom_ribbon(mapping = aes(ymin = ymin, ymax = ymax),
+              alpha = 0.5, fill = "gray") +
+  labs(y = "A0", x = "L0") +
+  scale_y_continuous(breaks = seq(from = 0, to = 1, by = 0.1)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 0, vjust = 0.5),
+        legend.key = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        strip.background = element_blank())
+#+END_SRC
+
+#+ATTR_LATEX: :height \textheight :width 0.5\textwidth :options page=1,keepaspectratio :center t
+#+RESULTS:
+[[file:./source/positivity_figure1.pdf]]
+\normalsize
+
+At $L_{0} = 0$, $A_{0}$ can only take on values between 0 and 0.6. At $L_{0} = 1$, $A_{0}$ can only take on values between 0.4 and 1.0. That is, although $A_{0}$ does vary over the full range between 0 and 1 in the population, the range of values that $A_{0}$ can take on is restricted at any given $L_{0}=l_{0}$ value. We will consider what counterfactual quantities and causal effects are identifiable.\\
+
+*** $E[Y^{a_{0}}]$ for $a_{0} < 0.4$
+\begin{align*}
+  E[Y^{a_{0}}]
+  &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+\end{align*}
+For exposure values below 0.4, the above identification formula is not well defined as the shaded positive area does not span the entire width of $L_{0}$ distribution (lower triangular white area violates positivity) and some of the conditional expectations are undefined.
+
+*** $E[Y^{a_{0}}]$ for $a_{0} > 0.6$
+\begin{align*}
+  E[Y^{a_{0}}]
+  &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+\end{align*}
+For exposure values above 0.6, the above identification formula is not well defined as the shaded positive area does not span the entire width of $L_{0}$ distribution (upper triangular white area violates positivity) and some of the conditional expectations are undefined.
+
+*** $E[Y^{a_{0}}]$ for $0.4 \le a_{0} \le 0.6$
+\begin{align*}
+  E[Y^{a_{0}}]
+  &= \int_{l_{0}} E[Y | A_{0} = a_{0}, L_{0} = l_{0}] f(L_{0} = l_{0}) \text{d}l_{0}\\
+\end{align*}
+For exposure values between 0.4 and 0.6, the above identification formula is well defined as the shaded positive area does span the entire width of $L_{0}$ distribution. All necessary conditional expectations are defined and observable. Therefore, the population counterfactual dose response in this restricted [0.4, 0.6] range is identifiable. Any causal contrast $E[Y^{a_{0}}] - E[Y^{a_{0}*}]$ for specific values $a_{0}$ and $a_{0}*$ both of which are within the [0.4, 0.6] range is identified.
+
+
+* Bibliography Part
+** Bibliography
+# To remove "References" section header
+\renewcommand{\section}[2]{}
+# Following lines must be left-aligned without preceding spaces.
+bibliographystyle:apalike
+bibliography:~/.emacs.d/misc/zotero.bib
