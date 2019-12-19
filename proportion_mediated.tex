@@ -1,0 +1,134 @@
+% Created 2019-12-19 Thu 05:46
+% Intended LaTeX compiler: pdflatex
+\documentclass[dvipdfmx,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+%% Margin
+%% \usepackage[margin=1.5cm]{geometry}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm, headsep=4pt]{geometry}
+%% \addtolength{\topmargin}{0.3cm}
+%% \addtolength{\textheight}{1.75in}
+%% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wasysym}
+%% Allow new page within align
+\allowdisplaybreaks
+\usepackage{cancel}
+% % Code
+\usepackage{listings}
+\usepackage{courier}
+\lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single}
+\usepackage[cache=false]{minted}
+\usemintedstyle{vs}
+%% Graphics
+\usepackage{graphicx}
+\usepackage{grffile}
+%% DAG
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric}
+%% Date
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{--}
+%% Header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Erase first to supress section names
+\fancyhead[L]{Kazuki Yoshida} % LEFT
+\fancyhead[C]{Proportion Mediated} % CENTER
+\fancyhead[R]{\today} % RIGHT
+\fancyfoot[C]{\thepage}
+%% \fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+%% Section font size
+\usepackage{sectsty}
+\sectionfont{\small}
+\subsectionfont{\small}
+\subsubsectionfont{\small}
+%% Section numbering
+%% http://tex.stackexchange.com/questions/3177/how-to-change-the-numbering-of-part-chapter-section-to-alphabetical-r
+%% \renewcommand\thesection{\alph{section}}
+%% \renewcommand\thesubsection{\thesection.\arabic{subsection}}
+%% \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+%%
+%% http://tex.stackexchange.com/questions/40067/numbering-sections-with-sequential-integers
+%% \usepackage{chngcntr}
+%% \counterwithout{subsection}{section}
+%% enumerate
+\usepackage{enumerate}
+%% double space
+%% \usepackage{setspace}
+%% \linespread{2}
+%% Paragraph Indentation
+\usepackage{indentfirst}
+\setlength{\parindent}{0em}
+%% Spacing after headings
+%% http://tex.stackexchange.com/questions/53338/reducing-spacing-after-headings
+\usepackage{titlesec}
+\titlespacing      \section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing   \subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+%% Fix figures and tables by [H]
+\usepackage{float}
+%% Allow URL embedding
+\usepackage{url}
+\usepackage{fontawesome}
+\input{\string~/.emacs.d/misc/GrandMacros}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.2.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\sloppy
+\section{Risk Difference}
+\label{sec:orgdd0e7a0}
+
+The proportion mediated on the counterfactual risk difference scale is defined as the first line. Once expanded into the counterfactual risk expressions, it can be transformed into an expression solely in terms of the counterfactual risk ratios.
+
+\begin{align*}
+  PM(RD)
+  &= \frac{RD^{NIE}}{RD^{TE}}\\
+  &= \frac{E[Y_{a,M_{a}}] - E[Y_{a,M_{a*}}]}{E[Y_{a,M_{a}}] - E[Y_{a*,M_{a*}}]}\\
+  &~~~\text{Divide by }E[Y_{a*,M_{a*}}]\\
+  &= \frac{\frac{E[Y_{a,M_{a}}]}{E[Y_{a*,M_{a*}}]} - \frac{E[Y_{a,M_{a*}}]}{E[Y_{a*,M_{a*}}]}}{\frac{E[Y_{a,M_{a}}]}{E[Y_{a*,M_{a*}}]} - \frac{E[Y_{a*,M_{a*}}]}{E[Y_{a*,M_{a*}}]}}\\
+  &= \frac{RR^{TE} - RR^{NDE}}{RR^{TE}-1}\\
+  &~~~\text{By multiplicative decomposition}\\
+  &= \frac{RR^{NDE}RR^{NIE} - RR^{NDE}}{RR^{NDE}RR^{NIE}-1}\\
+  &= \frac{RR^{NDE}(RR^{NIE} - 1)}{RR^{NDE}RR^{NIE}-1}\\
+\end{align*}
+
+
+\section{Odds Ratio}
+\label{sec:org7ae43bc}
+
+Assuming a rare outcome that allows approximation of RR with OR, we can approximate the proportion mediated on the counterfactual \emph{risk difference} scale as follows \cite{vanderweeleOddsRatiosMediation2010}.
+
+\begin{align*}
+  PM(RD)
+  &= \frac{RR^{NDE}(RR^{NIE} - 1)}{RR^{NDE}RR^{NIE}-1}\\
+  &\approx \frac{OR^{NDE}(OR^{NIE} - 1)}{OR^{NDE}OR^{NIE}-1}\\
+\end{align*}
+
+\section{Bibliography}
+\label{sec:org842f339}
+\renewcommand{\section}[2]{}
+
+\bibliographystyle{apalike}
+\bibliography{../../../../.emacs.d/misc/zotero}
+\end{document}
