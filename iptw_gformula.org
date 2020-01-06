@@ -268,6 +268,7 @@ This follows the Technical Point 2.3 in cite:hernanCausalInference2019.
 - Law of Total Expectation (Iterative Expectation): https://en.wikipedia.org/wiki/Law_of_total_expectation
 - Stability and Tower Property: https://en.wikipedia.org/wiki/Conditional_expectation#Basic_properties
 - Indicator function: https://www.statlect.com/fundamentals-of-probability/indicator-functions
+- Expectation of product of random variables: https://en.wikipedia.org/wiki/Product_distribution#Expectation_of_product_of_random_variables
 
 * Multiple time point strategy
 ** Identifiability Conditions

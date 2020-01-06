@@ -1,4 +1,4 @@
-% Created 2019-04-21 Sun 06:40
+% Created 2020-01-06 Mon 14:34
 % Intended LaTeX compiler: pdflatex
 \documentclass[dvipdfmx,10pt]{article}
 \usepackage[utf8]{inputenc}
@@ -92,23 +92,23 @@
  pdftitle={Equivalence of G-formula and IPTW},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 27.0.50 (Org mode 9.2.3)}, 
+ pdfcreator={Emacs 26.3 (Org mode 9.3.1)}, 
  pdflang={English}}
 \begin{document}
 
 \maketitle
 \sloppy
 \section{INTRODUCTION}
-\label{sec:org8137a98}
+\label{sec:org2c6a77f}
 \subsection{IPTW and G-formula}
-\label{sec:org7b81037}
+\label{sec:org504c3f4}
 \begin{itemize}
 \item Here we will demonstrate the equivalence of the IPTW \cite{robinsMarginalStructuralModels2000} and the \emph{g}-formula \cite{robinsNewApproachCausal1986} given saturated models.
 \item Special thanks to \href{https://twitter.com/edwardhkennedy/status/1119305663564472320}{@edwardhkennedy}!
 \end{itemize}
 
 \subsection{Notations}
-\label{sec:orge70ef42}
+\label{sec:org6ed8118}
 \begin{align*}
   Y &: \text{Outcome measured at the end of the study}\\
   Y^{a_{0}} &: \text{Counterfactual outcome with intervention at time 0 only}\\
@@ -122,10 +122,10 @@
 Here we assume both \(L_{t}\) and \(A_{t}\) are discrete.
 
 \subsection{Causal structure}
-\label{sec:orgff78965}
+\label{sec:orgf52156e}
 \begin{enumerate}
 \item Original DAG
-\label{sec:org7e78629}
+\label{sec:org4e6a470}
 \begin{center}
 \begin{tikzpicture}[%
   ->,
@@ -158,7 +158,7 @@ Here we assume both \(L_{t}\) and \(A_{t}\) are discrete.
 \end{center}
 
 \item Single time point intervention SWIG
-\label{sec:org4075256}
+\label{sec:orgb98c3c9}
 \begin{center}
 \begin{tikzpicture}[%
   ->,
@@ -191,7 +191,7 @@ Here we assume both \(L_{t}\) and \(A_{t}\) are discrete.
 \end{center}
 
 \item Two time point intervention SWIG
-\label{sec:orgab70a31}
+\label{sec:org60f07b7}
 \begin{center}
 \begin{tikzpicture}[%
   ->,
@@ -226,9 +226,9 @@ Here we assume both \(L_{t}\) and \(A_{t}\) are discrete.
 
 
 \section{Single time point strategy}
-\label{sec:org2dae0b8}
+\label{sec:org75a5ac0}
 \subsection{Identifiability Conditions}
-\label{sec:org58c4afe}
+\label{sec:org6698a64}
 \begin{itemize}
 \item We will follow the terminologies in \cite{hernanCausalInference2019} (Chapter 3).
 \item 1. \textbf{Consistency}: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
@@ -250,7 +250,7 @@ Here we assume both \(L_{t}\) and \(A_{t}\) are discrete.
 \end{center}
 
 \subsection{G-formula}
-\label{sec:org64aa61f}
+\label{sec:org068b635}
 This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \begin{align*}
   &~~~\text{By iterative expectation}\\
@@ -268,7 +268,7 @@ This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \end{align*}
 
 \subsection{IPTW}
-\label{sec:orga145200}
+\label{sec:org42b4f3d}
 This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \begin{align*}
   &~~~\text{By iterative expectation}\\
@@ -297,12 +297,13 @@ This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \item Law of Total Expectation (Iterative Expectation): \url{https://en.wikipedia.org/wiki/Law\_of\_total\_expectation}
 \item Stability and Tower Property: \url{https://en.wikipedia.org/wiki/Conditional\_expectation\#Basic\_properties}
 \item Indicator function: \url{https://www.statlect.com/fundamentals-of-probability/indicator-functions}
+\item Expectation of product of random variables: \url{https://en.wikipedia.org/wiki/Product\_distribution\#Expectation\_of\_product\_of\_random\_variables}
 \end{itemize}
 
 \section{Multiple time point strategy}
-\label{sec:orge332edf}
+\label{sec:orgdf55f13}
 \subsection{Identifiability Conditions}
-\label{sec:orge3e8aad}
+\label{sec:org310e42f}
 \begin{itemize}
 \item We will follow the terminologies in \cite{hernanCausalInference2019} (Chapter 19, Technical Point 19.2).
 \item 1. \textbf{Consistency}: the values of treatment under comparison correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data
@@ -328,7 +329,7 @@ This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \end{center}
 
 \subsection{G-formula}
-\label{sec:org1596dff}
+\label{sec:org1f416cd}
 This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \begin{align*}
   &~~~\text{By iterative expectation}\\
@@ -354,7 +355,7 @@ This follows the Technical Point 2.3 in \cite{hernanCausalInference2019}.
 \end{align*}
 
 \subsection{IPTW}
-\label{sec:org81dc8ba}
+\label{sec:orgdd14d2d}
 This follows the Technical Point 2.3 in \cite{hernanCausalInference2019} and an input from \href{https://twitter.com/edwardhkennedy/status/1119305663564472320}{@edwardhkennedy}.
 \begin{align*}
   &~~~\text{By iterative expectation}\\
@@ -436,11 +437,11 @@ This follows the Technical Point 2.3 in \cite{hernanCausalInference2019} and an 
 \end{align*}
 
 \section{Bibliography Part}
-\label{sec:orgaefc464}
+\label{sec:orgd857011}
 \subsection{Bibliography}
-\label{sec:org4a77eb7}
+\label{sec:org1a18317}
 \renewcommand{\section}[2]{}
 
 \bibliographystyle{apalike}
-\bibliography{../../../.emacs.d/misc/zotero}
+\bibliography{../../../../.emacs.d/misc/zotero}
 \end{document}
